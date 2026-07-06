@@ -6,3 +6,4 @@ digests/
 __pycache__/
 *.pyc
 .venv/
+scratch_probe/
