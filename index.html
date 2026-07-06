@@ -19,7 +19,7 @@
 }
 body { background: var(--ground); color: var(--ink); font-family: var(--serif);
   line-height: 1.65; font-size: 17px; margin: 0; }
-.wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
+.wrap { max-width: 50rem; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
 header { border-bottom: 3px double var(--rule); padding-bottom: 1.5rem; margin-bottom: 2.5rem; }
 .eyebrow { font-family: var(--sans); font-size: .72rem; letter-spacing: .14em;
   text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0 0 .6rem; }
@@ -29,6 +29,7 @@ h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 .5rem; text-wrap: balance; f
 .navbar a { margin-right: 1.1rem; }
 h2 { font-size: 1.35rem; margin: 2.8rem 0 .8rem; font-weight: 600; text-wrap: balance; }
 h2 .num { color: var(--brass); font-variant-numeric: tabular-nums; margin-right: .4rem; }
+h3 { font-size: 1.05rem; margin: 1.6rem 0 .5rem; font-weight: 600; }
 p { margin: 0 0 1rem; }
 a { color: var(--accent); }
 strong { color: var(--ink); }
@@ -51,18 +52,34 @@ li { margin-bottom: .55rem; }
 .criteria dd { margin: .15rem 0 0 0; font-size: .95rem; }
 footer { margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
   font-family: var(--sans); font-size: .8rem; color: var(--muted); }
+/* deal checker */
+.checker { background: var(--card); border: 1px solid var(--rule); border-radius: 8px;
+  padding: 1.2rem 1.3rem 1.3rem; margin: 1.2rem 0; font-family: var(--sans); }
+.checker .row { display: flex; flex-wrap: wrap; gap: .9rem; margin-bottom: 1rem; }
+.checker label { display: flex; flex-direction: column; gap: .25rem; font-size: .75rem;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.checker input, .checker select { font-family: var(--sans); font-size: 1rem; padding: .45rem .6rem;
+  border: 1px solid var(--rule); border-radius: 5px; background: var(--ground); color: var(--ink); width: 9.5rem; }
+.checker input:focus, .checker select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+#verdict { font-size: .95rem; line-height: 1.55; border-top: 1px solid var(--rule); padding-top: .9rem; min-height: 2.2rem; }
+#verdict .big { font-size: 1.15rem; font-weight: 700; }
+.v-good { color: var(--accent); } .v-bad { color: var(--flag); } .v-mid { color: var(--brass); }
+.meterline { font-variant-numeric: tabular-nums; color: var(--muted); font-size: .82rem; margin-top: .3rem; }
+td.deal-good { color: var(--accent); font-weight: 600; white-space: nowrap; }
+.dealtitle { max-width: 21rem; }
 </style>
 </head>
 <body>
 <div class="wrap">
 <header>
-  <p class="eyebrow">Land Scout · Phase 1 Research</p>
+  <p class="eyebrow">Land Scout · Market Report &amp; Deal Tools</p>
   <h1>The Land Market Within an Hour of Greenbrier, Arkansas</h1>
-  <p class="dateline">July 5, 2026 · Benchmarks from a same-day scrape of 3,003 live listings across 7 counties · Legal &amp; financing facts verified by 3-vote adversarial review (3 refuted claims excluded)</p>
+  <p class="dateline">Updated July 6, 2026 · Benchmarks from 3,000+ live listings tracked daily across 7 counties (LandWatch + LandSearch) · Legal &amp; financing facts verified by 3-vote adversarial review</p>
   <p class="navbar">
+    <a href="#checker">Deal checker</a>
+    <a href="#deals">Current best deals</a>
     <a href="https://github.com/SirBrentz/land-scout">Repo</a>
-    <a href="https://github.com/SirBrentz/land-scout/blob/main/research/2026-07-land-market-report.md">Full sourced report (Markdown)</a>
-    <a href="https://github.com/SirBrentz/land-scout/blob/main/v1/criteria.yaml">Tracker criteria</a>
+    <a href="https://github.com/SirBrentz/land-scout/blob/main/research/2026-07-land-market-report.md">Full sourced report</a>
   </p>
 </header>
 
@@ -70,30 +87,68 @@ footer { margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid var(--ru
 
 <h2><span class="num">1</span>What your money buys</h2>
 <div class="tablebox"><table>
-<tr><th>Budget</th><th>Realistic buy</th><th>Live example (7/5/26)</th></tr>
+<tr><th>Budget</th><th>Realistic buy</th><th>Live example</th></tr>
 <tr><td><b>~$50k</b></td><td>10–16 ac in Cleburne / Conway / Van Buren</td><td><a href="https://www.landwatch.com/cleburne-county-arkansas-undeveloped-land-for-sale/pid/421873819">16 ac Cleburne, $50,000, 16 mi away</a></td></tr>
 <tr><td><b>~$100k</b></td><td>25–50 ac Van Buren / Conway; ~15 ac Faulkner</td><td><a href="https://www.landwatch.com/van-buren-county-arkansas-recreational-property-for-sale/pid/426385894">48.9 ac Van Buren, $98,500, 31 mi</a></td></tr>
 <tr><td><b>~$200k</b></td><td>60–80 ac Van Buren; 40+ Conway/Cleburne; ~20 Faulkner</td><td><a href="https://www.landwatch.com/van-buren-county-arkansas-recreational-property-for-sale/pid/426591172">80 ac Van Buren, $176,000, 19 mi</a></td></tr>
 </table></div>
 
-<h2><span class="num">2</span>Median asking $/acre — raw land, by county &amp; tract size</h2>
+<h2><span class="num">2</span>What raw land asks per acre — cheap / typical / expensive</h2>
+<p>Each cell shows the <b>25th / 50th / 75th percentile</b> of asking $/acre for raw land (houses excluded). Read it as: <span class="kicker">below the first number = cheap for the market · middle = typical · above the third = expensive</span>.</p>
 <div class="tablebox"><table>
 <tr><th>County</th><th>5–15 ac</th><th>15–40 ac</th><th>40–80 ac</th><th>80+ ac</th></tr>
-<tr><td><b>Van Buren</b></td><td>$6,931 <span class="kicker">n=42</span></td><td class="best">$4,890 <span class="kicker">n=45</span></td><td class="best">$4,298 <span class="kicker">n=30</span></td><td class="best">$2,760 <span class="kicker">n=28</span></td></tr>
-<tr><td><b>Conway</b></td><td>$24,334 <span class="kicker">n=32</span></td><td>$7,449 <span class="kicker">n=24</span></td><td>$5,889 <span class="kicker">n=27</span></td><td>$4,948 <span class="kicker">n=6</span></td></tr>
-<tr><td><b>Perry</b></td><td>$25,177 <span class="kicker">n=20</span></td><td>$6,995 <span class="kicker">n=5</span></td><td>$3,475 <span class="kicker">n=2*</span></td><td>$4,245 <span class="kicker">n=12</span></td></tr>
-<tr><td><b>Cleburne</b></td><td>$24,994 <span class="kicker">n=72</span></td><td>$8,873 <span class="kicker">n=42</span></td><td>$6,861 <span class="kicker">n=14</span></td><td>$4,999 <span class="kicker">n=20</span></td></tr>
-<tr><td><b>White</b></td><td>$12,270 <span class="kicker">n=54</span></td><td>$10,814 <span class="kicker">n=27</span></td><td>$8,079 <span class="kicker">n=18</span></td><td>$6,000 <span class="kicker">n=23</span></td></tr>
-<tr><td><b>Faulkner</b></td><td>$25,000 <span class="kicker">n=126</span></td><td>$15,000 <span class="kicker">n=43</span></td><td>$13,226 <span class="kicker">n=24</span></td><td>$9,483 <span class="kicker">n=17</span></td></tr>
-<tr><td><b>Pulaski</b></td><td>$50,827 <span class="kicker">n=104</span></td><td>$19,667 <span class="kicker">n=31</span></td><td>$23,077 <span class="kicker">n=16</span></td><td>$12,295 <span class="kicker">n=19</span></td></tr>
+<tr><td><b>Van Buren</b></td><td>6.0 / 6.9 / 46.8k <span class="kicker">n=42</span></td><td class="best">3.5 / 4.9 / 9.1k <span class="kicker">n=45</span></td><td class="best">3.2 / 4.3 / 6.0k <span class="kicker">n=30</span></td><td class="best">2.2 / 2.8 / 3.3k <span class="kicker">n=28</span></td></tr>
+<tr><td><b>Conway</b></td><td>8.2 / 24.3 / 32.2k <span class="kicker">n=32</span></td><td>5.9 / 7.4 / 12.5k <span class="kicker">n=24</span></td><td>4.6 / 5.9 / 10.6k <span class="kicker">n=27</span></td><td>4.7 / 4.9 / 13.1k <span class="kicker">n=6</span></td></tr>
+<tr><td><b>Perry</b></td><td>13.6 / 25.2 / 40.6k <span class="kicker">n=20</span></td><td>5.3 / 7.0 / 7.0k <span class="kicker">n=5</span></td><td>— <span class="kicker">n=2</span></td><td>3.7 / 4.2 / 4.7k <span class="kicker">n=12</span></td></tr>
+<tr><td><b>Cleburne</b></td><td>12.5 / 24.8 / 50.0k <span class="kicker">n=73</span></td><td>6.3 / 8.8 / 16.2k <span class="kicker">n=43</span></td><td>4.5 / 6.9 / 8.7k <span class="kicker">n=14</span></td><td>3.5 / 5.0 / 6.0k <span class="kicker">n=20</span></td></tr>
+<tr><td><b>White</b></td><td>9.2 / 12.3 / 28.0k <span class="kicker">n=54</span></td><td>8.8 / 10.8 / 18.7k <span class="kicker">n=27</span></td><td>6.4 / 8.1 / 17.4k <span class="kicker">n=18</span></td><td>5.2 / 6.0 / 7.1k <span class="kicker">n=23</span></td></tr>
+<tr><td><b>Faulkner</b></td><td>13.2 / 25.0 / 60.9k <span class="kicker">n=126</span></td><td>8.6 / 15.0 / 35.5k <span class="kicker">n=43</span></td><td>10.0 / 13.2 / 20.0k <span class="kicker">n=24</span></td><td>8.1 / 9.5 / 17.4k <span class="kicker">n=17</span></td></tr>
+<tr><td><b>Pulaski</b></td><td>24.2 / 50.8 / 124.0k <span class="kicker">n=104</span></td><td>10.4 / 19.7 / 63.9k <span class="kicker">n=31</span></td><td>15.0 / 23.1 / 41.5k <span class="kicker">n=16</span></td><td>10.4 / 12.3 / 28.0k <span class="kicker">n=19</span></td></tr>
 </table></div>
-<p class="kicker">* two listings only — indicative. Asking prices; verified sold-record data (Land.com Faulkner) runs roughly 40–60% of asking medians, so negotiate.</p>
+<p class="kicker">Values in $1,000s per acre. Asking prices — verified sold-record data (Land.com, Faulkner) runs roughly 40–60% of asking medians, so a fair <i>purchase</i> often sits well below the "typical" ask. The wide 5–15 ac ranges are real: that band mixes $6k/ac pasture with $80k/ac subdivision-ready frontage.</p>
 
-<div class="note flag"><b>Beware blended county averages.</b> Published figures like "Faulkner averages $35,580/acre" mix subdivision lots and homes into the math (verified: rural-only averages ~$16–17k/ac vs $63k/ac for houses-with-land on the same site). Never judge a land deal against them.</div>
+<h2 id="checker"><span class="num">3</span>Deal checker — paste any listing's numbers</h2>
+<p>Compares a listing against every comparable raw-land listing tracked in its county and size band, and tells you where it falls.</p>
+<div class="checker">
+  <div class="row">
+    <label>County
+      <select id="c-county"></select></label>
+    <label>Acres
+      <input id="c-acres" type="number" min="1" step="0.1" placeholder="40"></label>
+    <label>Asking price $
+      <input id="c-price" type="number" min="1000" step="500" placeholder="120000"></label>
+  </div>
+  <div id="verdict"><span class="kicker">Enter acres and price to get a verdict.</span></div>
+</div>
 
-<p>Independently verified comps at the value end of Faulkner's 15–40 band: <a href="https://www.landwatch.com/arkansas-land-for-sale/enola">18.9 ac Enola @ $8,619/ac</a> and <a href="https://www.remax.com/ar/quitman/home-details/12-countryside-dr-quitman-ar-72131">15.5 ac Quitman @ $6,387/ac after a $10k drop</a>. Good Faulkner deals live in the $6–9k/ac range; median asking sits near $15k.</p>
+<h3>How to read the verdict</h3>
+<ul>
+<li><b>Cheapest 10%</b> is not automatically a bargain — land that cheap usually has a reason: no legal access, floodway, timber just cut, tax-deed title, or terrain you can't use. Run the §5 checklist twice as hard.</li>
+<li><b>Below the 25th percentile with no red flags</b> is genuine deal territory — these get bid fast; this is what the daily email alert exists for.</li>
+<li><b>Typical (25th–75th)</b> means the ask is normal. Your leverage is negotiation: sold prices run 40–60% of asking medians in this market, so offering 10–20% under a "typical" ask is standard, not insulting.</li>
+<li><b>Above the 75th percentile</b> — the seller is pricing in something (frontage, utilities, views, a pond) or just overreaching. Make them show you which.</li>
+</ul>
 
-<h2><span class="num">3</span>Due-diligence checklist (Arkansas-specific)</h2>
+<h2 id="deals"><span class="num">4</span>Current best deals on the board <span class="kicker">(July 6, 2026)</span></h2>
+<p>Top scorers among all 2,500+ tracked raw-land listings — scored on price vs county band, acreage, features, and no red flags. "vs typical" = how far the $/acre sits below the county/size median.</p>
+<div class="tablebox"><table>
+<tr><th>Listing</th><th>County</th><th>Acres</th><th>Price</th><th>$/acre</th><th>vs typical</th><th>Miles</th></tr>
+<tr><td class="dealtitle"><a href="https://www.landwatch.com/van-buren-county-arkansas-recreational-property-for-sale/pid/426385894">Hunting land bordering Gulf Mountain WMA, spring</a></td><td>Van Buren</td><td>48.9</td><td>$98,500</td><td>$2,016</td><td class="deal-good">−53%</td><td>31</td></tr>
+<tr><td class="dealtitle"><a href="https://www.landwatch.com/van-buren-county-arkansas-timberland-property-for-sale/pid/424556435">"Clinton 140" — 140 ac timberland</a></td><td>Van Buren</td><td>140</td><td>$149,000</td><td>$1,064</td><td class="deal-good">−61%</td><td>29</td></tr>
+<tr><td class="dealtitle"><a href="https://www.landwatch.com/van-buren-county-arkansas-recreational-property-for-sale/pid/426207702">Secluded creek property, timber + electricity</a></td><td>Van Buren</td><td>40</td><td>$80,000</td><td>$2,000</td><td class="deal-good">−53%</td><td>31</td></tr>
+<tr><td class="dealtitle"><a href="https://www.landwatch.com/conway-county-arkansas-recreational-property-for-sale/pid/425152606">Year-round creek, scenic</a></td><td>Conway</td><td>44</td><td>$149,744</td><td>$3,403</td><td class="deal-good">−42%</td><td>23</td></tr>
+<tr><td class="dealtitle"><a href="https://www.landwatch.com/faulkner-county-arkansas-recreational-property-for-sale/pid/424556453">"Faulkner 36.6" — Mayflower</a></td><td>Faulkner</td><td>36.6</td><td>$159,000</td><td>$4,344</td><td class="deal-good">−71%</td><td>19</td></tr>
+<tr><td class="dealtitle"><a href="https://www.landwatch.com/van-buren-county-arkansas-recreational-property-for-sale/pid/426051633">110 ac Ozark wilderness, dual creeks</a></td><td>Van Buren</td><td>110</td><td>$220,000</td><td>$2,000</td><td class="deal-good">−28%</td><td>35</td></tr>
+<tr><td class="dealtitle"><a href="https://www.landwatch.com/van-buren-county-arkansas-recreational-property-for-sale/pid/426591172">80 ac recreational timberland</a></td><td>Van Buren</td><td>80</td><td>$176,000</td><td>$2,200</td><td class="deal-good">−20%</td><td>19</td></tr>
+<tr><td class="dealtitle"><a href="https://www.landwatch.com/cleburne-county-arkansas-recreational-property-for-sale/pid/427000405">"Fence Line 40" — Drasco</a></td><td>Cleburne</td><td>40</td><td>$160,000</td><td>$4,000</td><td class="deal-good">−42%</td><td>40</td></tr>
+<tr><td class="dealtitle"><a href="https://www.landwatch.com/conway-county-arkansas-farms-and-ranches-for-sale/pid/423395241">Arkansas River bottomland farm</a></td><td>Conway</td><td>53.4</td><td>$195,000</td><td>$3,652</td><td class="deal-good">−38%</td><td>15</td></tr>
+<tr><td class="dealtitle"><a href="https://www.landwatch.com/van-buren-county-arkansas-recreational-property-for-sale/pid/425766098">Hilltop views, exceptional hunting</a></td><td>Van Buren</td><td>35</td><td>$103,540</td><td>$2,958</td><td class="deal-good">−40%</td><td>31</td></tr>
+<tr><td class="dealtitle"><a href="https://www.landwatch.com/pulaski-county-arkansas-hunting-property-for-sale/pid/425826724">"McAlmont 22" hunting tract</a></td><td>Pulaski</td><td>22</td><td>$75,000</td><td>$3,409</td><td class="deal-good">−83%</td><td>33</td></tr>
+<tr><td class="dealtitle"><a href="https://www.landwatch.com/conway-county-arkansas-undeveloped-land-for-sale/pid/426262519">Hattieville 40</a></td><td>Conway</td><td>40</td><td>$140,000</td><td>$3,500</td><td class="deal-good">−41%</td><td>25</td></tr>
+</table></div>
+<div class="note">A deep discount to "typical" is the <i>start</i> of the story, not the end — the −83% Pulaski tract, for instance, is near North Little Rock where the band median is inflated by development land, and bottomland farms flood by definition. Every one of these still needs the §5 checklist before an offer. New listings that hit this tier trigger the daily email alert.</div>
+
+<h2><span class="num">5</span>Due-diligence checklist (Arkansas-specific)</h2>
 <ol>
 <li><b>Legal access.</b> Deeded access or a recorded easement — not neighborly permission. Landlocked parcels are a top reason land looks cheap.</li>
 <li><b>Soil / septic.</b> Arkansas has <b>no minimum lot size for septic</b> — buildability is decided by a formal <a href="https://healthy.arkansas.gov/programs-services/public-health-safety/onsite-wastewater/onsite-wastewater-faqs/">ADH soil-pit evaluation</a> (depth to rock, impervious layers, groundwater), not a simple perc test. Poor soils can force an alternative system with a 3-acre minimum. Make offers contingent on a soil evaluation.</li>
@@ -105,30 +160,89 @@ footer { margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid var(--ru
 <li><b>Tax classification.</b> Ag/pasture/timber land is assessed at <a href="https://www.timbertax.org/statetaxes/states/proptax/arkansas/">use value</a> (soil productivity), not market value — keep the classification and holding costs stay low.</li>
 </ol>
 
-<h2><span class="num">4</span>Where land actually trades</h2>
+<h2><span class="num">6</span>Where land actually trades</h2>
 <ul>
 <li><b>Aggregators:</b> LandWatch, LandSearch, Land.com. <b>The tracker watches LandWatch + LandSearch daily.</b></li>
 <li><b>Specialist brokerages:</b> Mossy Oak Properties (294 active AR listings at research time), United Country, Whitetail Properties, local Conway agents — the pocket-listing channel once you know your target.</li>
 <li><b>COSL tax-delinquent auctions</b> (<a href="https://www.cosl.org/Home/Buyers">cosl.org</a>): minimum bid = back taxes + costs. Sept 2025 regional auction: 137 of 504 parcels for $287,318 (~$2,100/parcel). But — limited warranty deed, no title insurance, 90-day litigation window, owner can redeem until the day before, and a quiet-title suit is usually needed for marketable title. Cheap raw hunting dirt with an attorney; wrong channel for a homesite.</li>
 </ul>
 
-<h2><span class="num">5</span>Financing reality</h2>
+<h2><span class="num">7</span>Financing reality</h2>
 <p>Credit-union land loans are strict: representative Arkansas terms (<a href="https://www.afcu.org/mortgage/mortgages/land-loans/">AFCU</a>) are <b>25% down minimum</b>, higher-than-mortgage rates, balloon structures — and <b>capped at 10 acres</b>. For 15–80+ acre tracts the real paths are <b>Farm Credit lenders</b> (AgHeritage FCS, Farm Credit of Western Arkansas — no acreage caps), <b>owner financing</b> (common here; attorney-review any contract-for-deed), or <b>cash</b>. Listings advertising owner financing get a scoring bonus in the tracker.</p>
 
-<h2><span class="num">6</span>Hunting factors</h2>
-<p><a href="https://www.agfc.com/wma/camp-robinson-wma/">Camp Robinson WMA</a> — 9,319 acres in Faulkner/Pulaski, inside the ring (AGFC permit + gate check-in; active military installation). The Cadron Creek corridors and Ozark NF fringe anchor habitat to the north — exactly where the cheap 40–80+ acre tracts are. No verified "minimum huntable acreage" exists; treat 20 ac as a practical floor, 40+ as comfortable, and value adjacency to big timber over raw acreage.</p>
+<h2><span class="num">8</span>Hunting factors</h2>
+<p><a href="https://www.agfc.com/wma/camp-robinson-wma/">Camp Robinson WMA</a> — 9,319 acres in Faulkner/Pulaski, inside the ring (AGFC permit + gate check-in; active military installation). The Cadron Creek corridors and Ozark NF fringe anchor habitat to the north — exactly where the cheap 40–80+ acre tracts are. Note the top deal on the board borders <b>Gulf Mountain WMA</b> (Van Buren) — adjacency to public ground effectively extends your huntable acreage for free. Treat 20 ac as a practical floor, 40+ as comfortable, and value adjacency to big timber over raw acreage.</p>
 
-<h2><span class="num">7</span>Alert criteria live in the tracker</h2>
+<h2><span class="num">9</span>Alert criteria live in the tracker</h2>
 <dl class="criteria">
 <dt>Acreage floor — 10 ac (bonus at 20 / 40+)</dt><dd>Below 10 ac you pay the homesite premium.</dd>
 <dt>Budget ceiling — $250k</dt><dd>Covers 80 ac Van Buren or ~20 ac Faulkner.</dd>
-<dt>$/acre caps — Faulkner 15k · Conway 7.5k · Van Buren 5k · Cleburne 9k · White 11k · Perry 7k · Pulaski 20k</dt><dd>Each county's 15–40 ac median from the 3,003-listing scrape; scoring rewards distance below the cap.</dd>
+<dt>$/acre caps — Faulkner 15k · Conway 7.5k · Van Buren 5k · Cleburne 9k · White 11k · Perry 7k · Pulaski 20k</dt><dd>Each county's 15–40 ac median; scoring rewards distance below the cap.</dd>
 <dt>Auto-reject keywords</dt><dd>landlocked · no legal access · easement needed · floodway/flood zone · mineral rights reserved · tax deed · quiet title</dd>
 <dt>Bonus keywords</dt><dd>creek/pond/spring/lake · timber · hunting/deer · well/septic/perc/soil test · road frontage · deeded access · owner financing · WMA/Camp Robinson</dd>
-<dt>Price-drop alerts — any drop</dt><dd>Motivated sellers; the Quitman comp dropped $10k in one move.</dd>
+<dt>Price-drop alerts — any drop</dt><dd>Motivated sellers; one verified Quitman comp dropped $10k in one move.</dd>
 </dl>
 
-<footer>Confidence notes: benchmarks are one-day asking prices; Perry 40–80 ac rests on 2 listings; Farm Credit terms for 15–80 ac tracts not yet verified. Three research claims failed adversarial verification and were excluded. Full sourced report with citations: <a href="https://github.com/SirBrentz/land-scout/blob/main/research/2026-07-land-market-report.md">research/2026-07-land-market-report.md</a>.</footer>
+<footer>Percentiles computed 2026-07-06 from the tracker database (raw land only; houses-on-acreage excluded from all figures). Asking prices, one region, small samples in some cells (shown as n=). Three research claims failed adversarial verification and were excluded. Full sourced report: <a href="https://github.com/SirBrentz/land-scout/blob/main/research/2026-07-land-market-report.md">research/2026-07-land-market-report.md</a>.</footer>
 </div>
+
+<script>
+const STATS = {"Faulkner": {"5-15": {"n": 126, "p10": 8950, "p25": 13225, "p50": 25000, "p75": 60874, "p90": 117958}, "15-40": {"n": 43, "p10": 6374, "p25": 8562, "p50": 15000, "p75": 35543, "p90": 44994}, "40-80": {"n": 24, "p10": 8800, "p25": 10000, "p50": 13226, "p75": 19950, "p90": 51336}, "80+": {"n": 17, "p10": 4958, "p25": 8112, "p50": 9483, "p75": 17431, "p90": 28617}}, "Conway": {"5-15": {"n": 32, "p10": 5507, "p25": 8166, "p50": 24334, "p75": 32200, "p90": 135187}, "15-40": {"n": 24, "p10": 4667, "p25": 5938, "p50": 7449, "p75": 12500, "p90": 41684}, "40-80": {"n": 27, "p10": 3500, "p25": 4563, "p50": 5889, "p75": 10562, "p90": 13200}, "80+": {"n": 6, "p10": 3986, "p25": 4716, "p50": 4948, "p75": 13052, "p90": 15753}}, "Van Buren": {"5-15": {"n": 42, "p10": 3518, "p25": 5996, "p50": 6931, "p75": 46801, "p90": 83079}, "15-40": {"n": 45, "p10": 3027, "p25": 3500, "p50": 4890, "p75": 9068, "p90": 15892}, "40-80": {"n": 30, "p10": 2016, "p25": 3233, "p50": 4298, "p75": 6000, "p90": 7056}, "80+": {"n": 28, "p10": 2000, "p25": 2167, "p50": 2760, "p75": 3333, "p90": 5519}}, "Cleburne": {"5-15": {"n": 73, "p10": 10000, "p25": 12500, "p50": 24783, "p75": 49980, "p90": 95806}, "15-40": {"n": 43, "p10": 4936, "p25": 6295, "p50": 8794, "p75": 16238, "p90": 30542}, "40-80": {"n": 14, "p10": 4000, "p25": 4542, "p50": 6861, "p75": 8691, "p90": 13071}, "80+": {"n": 20, "p10": 3209, "p25": 3493, "p50": 4999, "p75": 6000, "p90": 10081}}, "White": {"5-15": {"n": 54, "p10": 7668, "p25": 9172, "p50": 12270, "p75": 28000, "p90": 92822}, "15-40": {"n": 27, "p10": 8014, "p25": 8839, "p50": 10814, "p75": 18679, "p90": 30091}, "40-80": {"n": 18, "p10": 5806, "p25": 6378, "p50": 8079, "p75": 17447, "p90": 30962}, "80+": {"n": 23, "p10": 4754, "p25": 5188, "p50": 6000, "p75": 7125, "p90": 9108}}, "Perry": {"5-15": {"n": 20, "p10": 6990, "p25": 13625, "p50": 25177, "p75": 40646, "p90": 74009}, "15-40": {"n": 5, "p10": 5277, "p25": 5281, "p50": 6995, "p75": 6995, "p90": 15180}, "40-80": {"n": 2}, "80+": {"n": 12, "p10": 2658, "p25": 3695, "p50": 4245, "p75": 4749, "p90": 5500}}, "Pulaski": {"5-15": {"n": 104, "p10": 14847, "p25": 24178, "p50": 50827, "p75": 124018, "p90": 210317}, "15-40": {"n": 31, "p10": 9000, "p25": 10429, "p50": 19667, "p75": 63889, "p90": 150000}, "40-80": {"n": 16, "p10": 6664, "p25": 14990, "p50": 23077, "p75": 41539, "p90": 56250}, "80+": {"n": 19, "p10": 3810, "p25": 10362, "p50": 12295, "p75": 28000, "p90": 30130}}};
+
+const sel = document.getElementById('c-county');
+Object.keys(STATS).forEach(c => { const o = document.createElement('option'); o.value = o.textContent = c; sel.appendChild(o); });
+sel.value = 'Faulkner';
+
+function band(acres) {
+  if (acres < 5) return null;
+  if (acres < 15) return '5-15';
+  if (acres < 40) return '15-40';
+  if (acres < 80) return '40-80';
+  return '80+';
+}
+function pctile(st, ppa) {
+  const pts = [[10,st.p10],[25,st.p25],[50,st.p50],[75,st.p75],[90,st.p90]];
+  if (ppa <= st.p10) return 10 * ppa / st.p10;      // rough extrapolation below p10
+  if (ppa >= st.p90) return 90;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const [pa, va] = pts[i], [pb, vb] = pts[i+1];
+    if (ppa >= va && ppa <= vb) return va === vb ? pa : pa + (pb - pa) * (ppa - va) / (vb - va);
+  }
+  return 50;
+}
+const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+const ord = n => { const s = ['th','st','nd','rd'], v = n % 100; return n + (s[(v-20)%10] || s[v] || s[0]); };
+
+function update() {
+  const county = sel.value;
+  const acres = parseFloat(document.getElementById('c-acres').value);
+  const price = parseFloat(document.getElementById('c-price').value);
+  const out = document.getElementById('verdict');
+  if (!acres || !price) { out.innerHTML = '<span class="kicker">Enter acres and price to get a verdict.</span>'; return; }
+  const b = band(acres);
+  if (!b) { out.innerHTML = '<span class="kicker">Under 5 acres — outside the data this page tracks (homesite-lot market, different economics).</span>'; return; }
+  const st = STATS[county][b];
+  const ppa = price / acres;
+  if (!st || !st.p50) {
+    out.innerHTML = `That's <b>${fmt(ppa)}/acre</b>. Not enough tracked ${b}-acre listings in ${county} County (n=${st ? st.n : 0}) for a reliable verdict — compare against a neighboring county's band in the table above.`;
+    return;
+  }
+  const p = pctile(st, ppa);
+  let cls, verdict, advice;
+  if (p <= 10) { cls = 'v-mid'; verdict = 'Suspiciously cheap';
+    advice = 'Cheaper than ~90% of comparable asks. Land this cheap usually has a reason — check legal access, flood maps, timber condition, and title before celebrating.'; }
+  else if (p <= 25) { cls = 'v-good'; verdict = 'Deal territory';
+    advice = 'Priced below three-quarters of comparable listings. If the §5 checklist comes back clean, this is the kind of listing that moves fast.'; }
+  else if (p <= 60) { cls = 'v-mid'; verdict = 'Typical ask';
+    advice = 'Normal pricing. Sold prices in this market run well below asking — offering 10–20% under is standard practice, not an insult.'; }
+  else if (p <= 85) { cls = 'v-bad'; verdict = 'Above market';
+    advice = 'Most comparable land asks less. Something should justify it — frontage, utilities, water, views. Make the seller show you which, or pass.'; }
+  else { cls = 'v-bad'; verdict = 'Overpriced vs comps';
+    advice = 'Near the top of the range for this county and size. Unless it has exceptional features, there are better-priced comparables on the board right now.'; }
+  out.innerHTML = `<span class="big ${cls}">${verdict}</span> — ${fmt(ppa)}/acre, roughly the <b>${ord(Math.round(p))} percentile</b> of ${st.n} tracked ${b}-acre listings in ${county} County.<br>${advice}
+    <div class="meterline">County band: cheap &lt; ${fmt(st.p25)}/ac · typical ${fmt(st.p50)}/ac · expensive &gt; ${fmt(st.p75)}/ac</div>`;
+}
+['c-county','c-acres','c-price'].forEach(id => document.getElementById(id).addEventListener('input', update));
+</script>
 </body>
 </html>

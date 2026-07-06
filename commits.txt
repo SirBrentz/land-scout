@@ -2,3 +2,4 @@
 2026-07-05  v1  Tracker built + verified: LandWatch/LandSearch scrapers (real-Chrome headed off-screen), SQLite diff (new/price-drop), scoring vs criteria.yaml, HTML digest, SMTP email stub, daily 7AM scheduled task. Seeded 3,003 listings across 7 counties. Price-drop detection verified.
 2026-07-05  v1  Phase 1 complete: market research report (research/2026-07-land-market-report.md) from 107-agent verified deep-research + 3,003-listing benchmark scrape; criteria.yaml updated with data-driven county caps and verified red-flag/bonus keywords.
 2026-07-06  v1  GitHub Pages: added index.html (styled market report) + .nojekyll; repo made public by Brent for Pages.
+2026-07-06  v1  Pages report v2: percentile bands (P25/P50/P75) per county+size, interactive deal checker vs tracked comps, current top-deals board with vs-median discounts, deal-interpretation guidance.
