@@ -1,24 +1,24 @@
 # Alert criteria for land-scout. Tune freely — no code changes needed.
-# PROVISIONAL: county $/acre caps are placeholders until the Phase-1 market
-# report lands; they will be replaced with researched benchmarks.
+# Benchmarks derived from research/2026-07-land-market-report.md:
+# caps = each county's median $/acre for raw 15-40 acre tracts
+# (3,003-listing scrape, 2026-07-05). Listings priced below the cap score
+# higher the further below they sit.
 
-min_acres: 10          # smaller than this isn't huntable/campable
-max_price: 250000      # hard ceiling regardless of acreage
+min_acres: 10          # below 10ac you pay a 2-4x per-acre homesite premium
+max_price: 250000      # covers 80ac Van Buren or ~20ac Faulkner
 max_miles: 45          # straight-line from Greenbrier
 
-# Max $/acre to count as "fairly priced" per county (placeholder values).
-# Listings above the cap still get tracked, they just score lower.
 max_ppa_by_county:
-  Faulkner: 8000
-  Conway: 6000
-  Van Buren: 5000
-  Cleburne: 6000
-  White: 6500
-  Perry: 5500
-  Pulaski: 9000
-default_max_ppa: 7000
+  Faulkner: 15000
+  Conway: 7500
+  "Van Buren": 5000
+  Cleburne: 9000
+  White: 11000
+  Perry: 7000
+  Pulaski: 20000
+default_max_ppa: 9000
 
-# Keywords in the title/types that add points
+# Keywords in the title/types that add points (feature + financing drivers)
 bonus_keywords:
   - creek
   - pond
@@ -30,16 +30,27 @@ bonus_keywords:
   - utilities
   - well
   - septic
+  - perc
+  - "soil test"
   - "road frontage"
+  - "deeded access"
+  - "owner financing"
+  - wma
+  - "camp robinson"
   - pasture
 
-# Keywords that subtract points (likely unusable or misleading tracts)
+# Verified deal-killers (see report sections 3-4)
 red_flag_keywords:
   - floodway
   - "flood zone"
   - landlocked
   - "no access"
-  - easement only
+  - "no legal access"
+  - "easement needed"
+  - "easement only"
+  - "mineral rights reserved"
+  - "tax deed"
+  - "quiet title"
   - commercial
   - "mobile home park"
 
