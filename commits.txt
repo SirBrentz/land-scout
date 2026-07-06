@@ -1,0 +1,1 @@
+2026-07-05  v1  Initial scaffold: repo structure, README, .gitignore. Phase 1 (market research report) underway.
